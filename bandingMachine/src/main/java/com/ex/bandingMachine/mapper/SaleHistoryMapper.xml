@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ex.bandingMachine.mapper.SaleHistoryMapper">
+	<insert id="insertSaleHistory" parameterType="com.ex.bandingMachine.dto.SaleHistory">
+		INSERT INTO sale_history (
+			product_name
+		) VALUES (
+			#{productName}
+		)
+	</insert>
+	<select id="selectSaleHistoryByProductName" resultType="map">
+		SELECT 
+			h.product_name productName,
+			SUM(p.price) totalPrice
+		FROM 
+			sale_history h, product p
+		WHERE 
+			h.product_name = p.product_name
+		GROUP BY h.product_name
+	</select>
+</mapper>
