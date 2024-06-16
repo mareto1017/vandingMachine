@@ -48,23 +48,45 @@ public class BalanceService {
 		if(row1 != 1) {
 			throw new RuntimeException();
 		}
+		Cash currentCash = cashMapper.selectCash();
+		log.debug(currentCash.toString());
 		
 		Cash cash = new Cash();
-		cash.setWon50000(-(money / 50000));
-		money = money % 50000;
-		cash.setWon10000(-(money / 10000));
-		money = money % 10000;
-		cash.setWon5000(-(money / 5000));
-		money = money % 5000;
-		cash.setWon1000(-(money / 1000));
-		money = money % 1000;
-		cash.setWon500(-(money / 500));
-		money = money % 500;
-		cash.setWon100(-(money / 100));
-		money = money % 100;
-		cash.setWon50(-(money / 50));
-		money = money % 50;
-		cash.setWon10(-(money / 10));
+		if(currentCash.getWon50000() >= money / 50000) {
+			cash.setWon50000(-(money / 50000));
+			money = money % 50000;
+		}
+		if(currentCash.getWon10000() >= money / 10000) {
+			cash.setWon10000(-(money / 10000));
+			money = money % 10000;
+		}
+		if(currentCash.getWon5000() >= money / 5000) {
+			cash.setWon5000(-(money / 5000));
+			money = money % 5000;
+		}
+		if(currentCash.getWon1000() >= money / 1000) {
+			cash.setWon1000(-(money / 1000));
+			money = money % 1000;
+		}
+		if(currentCash.getWon500() >= money / 500) {
+			cash.setWon500(-(money / 500));
+			money = money % 500;
+		}
+		if(currentCash.getWon100() >= money / 100) {
+			cash.setWon100(-(money / 100));
+			money = money % 100;
+		}
+		if(currentCash.getWon50() >= money / 50) {
+			cash.setWon50(-(money / 50));
+			money = money % 50;
+		}
+		if(currentCash.getWon10() >= money / 10) {
+			cash.setWon10(-(money / 10));
+			money = money % 10;
+		}
+		if(money != 0) {
+			throw new RuntimeException();
+		}
 		log.debug(cash.toString());
 		
 		int row2 = cashMapper.updateCash(cash);
