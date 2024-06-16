@@ -21,6 +21,13 @@ public class BalanceService {
 	@Autowired
 	private CashMapper cashMapper;
 	
+	// 잔액 확인
+	public int checkBalance() {
+		int curBalance = balanceMapper.selectBalance();
+		return curBalance;
+	}
+
+	
 	// 잔액 충전
 	public void chargeBalance(Cash cash) {
 		log.debug(cash.toString());

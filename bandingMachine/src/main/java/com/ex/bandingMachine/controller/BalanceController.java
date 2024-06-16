@@ -14,6 +14,13 @@ public class BalanceController {
 	@Autowired
 	private BalanceService balanceService;
 	
+	//잔액 확인 
+	@GetMapping("/checkBalance")
+	public int checkBalance() {
+		return balanceService.checkBalance();
+	}
+
+	
 	// 잔액 충전
 	@PostMapping("/chargeBalance")
 	public void chargeBalance(Cash cash) {
