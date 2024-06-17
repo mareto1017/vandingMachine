@@ -1,4 +1,4 @@
-package com.ex.bandingMachine;
+package com.ex.vendingMachine;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

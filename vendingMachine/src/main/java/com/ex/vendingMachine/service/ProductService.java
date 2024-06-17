@@ -1,4 +1,4 @@
-package com.ex.bandingMachine.service;
+package com.ex.vendingMachine.service;
 
 import java.util.List;
 
@@ -6,11 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ex.bandingMachine.dto.Product;
-import com.ex.bandingMachine.dto.SaleHistory;
-import com.ex.bandingMachine.mapper.BalanceMapper;
-import com.ex.bandingMachine.mapper.ProductMapper;
-import com.ex.bandingMachine.mapper.SaleHistoryMapper;
+import com.ex.vendingMachine.dto.Product;
+import com.ex.vendingMachine.dto.SaleHistory;
+import com.ex.vendingMachine.mapper.BalanceMapper;
+import com.ex.vendingMachine.mapper.ProductMapper;
+import com.ex.vendingMachine.mapper.SaleHistoryMapper;
 
 import lombok.extern.slf4j.Slf4j;
 

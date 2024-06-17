@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Vending Machine</title>
+<!-- jQuery 사용 CDN -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        
+    }
+
+    h1 {
+        text-align: center;
+        color: #fff;
+        margin:10px;
+        padding: 10px 0;
+        font-style:italic;
+    }
+
+    .vending-machine {
+        position: relative;
+        background-color: #FE2323 ;
+        border-radius: 10px;
+        padding: 20px;
+        width: 450px;
+        height: 700px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        display: flex;
+        flex-direction: column;
+        justify-content:flex-start;
+    }
+
+    .vending-machine table {
+        width: 100%;
+        color: white;
+        flex: 1;
+    }
+
+    .vending-machine td {
+        text-align: center;
+        vertical-align: middle;
+        padding: 10px;
+    }
+
+    .vending-machine img {
+        border-radius: 10px;
+        border:1px solid black;
+    }
+
+    .vending-machine a {
+        text-decoration: none;
+        color: white;
+    }
+
+    .vending-machine a:hover {
+        background-color: grey;
+        
+    }
+
+    .vending-machine select, .vending-machine input {
+        width: 100%;
+        padding: 5px;
+        border-radius: 5px;
+        border: 2px solid #ccc;
+        box-sizing: border-box;
+    }
+
+    .cash-container {
+        display: flex;
+        justify-content: space-around;
+        background-color: #ffeb3b;
+        padding: 10px;
+        border-radius: 5px;
+        margin: 20px 0; 
+        width: 90%;
+        box-sizing: border-box;
+    }
+
+
+    .cash-container div {
+        flex: 1;
+        margin: 0 5px;
+    }
+
+    .balance, .change {
+        text-align: right;
+    }
+
+    .owned-cash {
+        background-color: #fff;
+        border-radius: 5px;
+        padding: 10px;
+        text-align: center;
+    }
+
+    .logo {
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        font-size: 24px;
+        font-weight: bold;
+        color: red;
+        font-family: 'Arial', sans-serif;
+    }
+   	button{
+   		margin:10px;
+   		background-color: #ffeb3b;
+        padding: 10px;
+        border-radius: 5px;
+   	}
+   	input{
+   		border:2px solid black;
+   	}
+</style>
+</head>
+<body>
+    <div class="vending-machine">
+        <h1>VENDING MACHINE</h1>
+        <!-- 자판기 메인 화면   -->
+        <section>
+            <table>
+                <tr>
+                    <td><a href="#"><img src="./img/cola.jpeg" width="70" height="100"><br>콜라 <br>1300원</a></td>
+                    <td><a href="#"><img src="./img/cider.jpeg" width="70" height="100"><br>사이다 <br>1500원</a></td>
+                    <td class="balance">잔액:<br><input name="curCash" id="curBalance" readonly></td>
+                </tr>
+                <tr>
+                    <td colspan="3" class="cash-container">
+                        <div>
+                            <select id="chargeBalance">
+                                <option value="none">==지폐==</option>
+						        <option value="1000">1000원</option>
+						        <option value="5000">5000원</option>
+						        <option value="10000">10000원</option>
+						        <option value="50000">50000원</option>
+                            </select>
+                        </div>
+                        <div>
+                            <select>
+                                <option>==동전==</option>
+                                <option>100원</option>
+                                <option>50원</option>
+                                <option>500원</option>
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" class="change">
+                        <div>
+                            <button type="button">잔돈반환</button>
+                            <br>
+                            <input value="1000" readonly>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </section>
+        <!-- 소지 금액 -->
+       
+        <!-- 코카콜라 로고 텍스트 -->
+         <img src="./img/logo-remove.png" class="logo" alt="Coca-Cola Logo" width="200" height="150">
+         <br><a href="#">관리자 모드 >> </a>
+    </div>
+    <script>
+		$(document).ready(function() {
+			/* 현재 잔액  */
+    		$.ajax({
+    			url:'/checkBalance',
+    			method:'GET',
+    			success:function(checkBalance){
+    				console.log(checkBalance);
+    				$('#curBalance').val(checkBalance + '원');
+	    		}
+    		})
+    		
+    		//잔액 충전
+            $('#chargeBalance').change(function() {
+            	var selectedValue = $('#chargeBalance').val();
+                if (selectedValue !== "none") {
+                    let data = {};
+                    data['won' + selectedValue] = 1;
+                    $.ajax({
+                        url: '/chargeBalance',
+                        method: 'POST',
+                        data: data,
+                        success: function(response) {
+                            console.log(data);
+                            $('#chargeBalance').val('none');
+                            $.ajax({
+                    			url:'/checkBalance',
+                    			method:'GET',
+                    			success:function(checkBalance){
+                    				console.log(checkBalance);
+                    				$('#curBalance').val(checkBalance + '원');
+                	    		}
+                    		})
+                        },
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

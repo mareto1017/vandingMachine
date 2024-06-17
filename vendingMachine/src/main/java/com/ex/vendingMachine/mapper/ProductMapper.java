@@ -1,10 +1,10 @@
-package com.ex.bandingMachine.mapper;
+package com.ex.vendingMachine.mapper;
 
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.ex.bandingMachine.dto.Product;
+import com.ex.vendingMachine.dto.Product;
 
 @Mapper
 public interface ProductMapper {

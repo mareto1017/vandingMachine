@@ -1,12 +1,12 @@
-package com.ex.bandingMachine.controller;
+package com.ex.vendingMachine.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ex.bandingMachine.dto.Cash;
-import com.ex.bandingMachine.service.BalanceService;
+import com.ex.vendingMachine.dto.Cash;
+import com.ex.vendingMachine.service.BalanceService;
 
 @RestController
 public class BalanceController {

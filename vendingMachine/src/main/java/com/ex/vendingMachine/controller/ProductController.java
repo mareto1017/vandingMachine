@@ -1,4 +1,4 @@
-package com.ex.bandingMachine.controller;
+package com.ex.vendingMachine.controller;
 
 import java.util.List;
 
@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ex.bandingMachine.dto.Product;
-import com.ex.bandingMachine.service.ProductService;
+import com.ex.vendingMachine.dto.Product;
+import com.ex.vendingMachine.service.ProductService;
 
 @RestController
 public class ProductController {

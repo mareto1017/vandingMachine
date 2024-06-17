@@ -1,4 +1,4 @@
-package com.ex.bandingMachine;
+package com.ex.vendingMachine;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;

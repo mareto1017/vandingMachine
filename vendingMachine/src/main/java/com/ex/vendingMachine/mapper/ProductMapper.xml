@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ex.bandingMachine.mapper.ProductMapper">
-	<select id="selectProudctList" resultType="com.ex.bandingMachine.dto.Product">
+<mapper namespace="com.ex.vendingMachine.mapper.ProductMapper">
+	<select id="selectProudctList" resultType="com.ex.vendingMachine.dto.Product">
 		SELECT product_name productName,
 			price, 
 			state, 
 			stock 
 		FROM product
 	</select>
-	<select id="selectProudctListByState" parameterType="String" resultType="com.ex.bandingMachine.dto.Product">
+	<select id="selectProudctListByState" parameterType="String" resultType="com.ex.vendingMachine.dto.Product">
 		SELECT product_name productName,
 			price, 
 			state, 
@@ -16,7 +16,7 @@
 		FROM product
 		WHERE state = #{state}
 	</select>
-	<update id="updateProduct" parameterType="com.ex.bandingMachine.dto.Product">
+	<update id="updateProduct" parameterType="com.ex.vendingMachine.dto.Product">
 		UPDATE product 
 		<set> 
 			<if test="price != 0">
@@ -31,7 +31,7 @@
 		</set>
 		WHERE product_name = #{productName}
 	</update>
-	<insert id="insertProduct" parameterType="com.ex.bandingMachine.dto.Product">
+	<insert id="insertProduct" parameterType="com.ex.vendingMachine.dto.Product">
 		INSERT INTO product (
 			product_name, 
 			price
@@ -40,7 +40,7 @@
 			#{price}
 		)
 	</insert>
-	<select id="selectProduct" parameterType="String" resultType="com.ex.bandingMachine.dto.Product">
+	<select id="selectProduct" parameterType="String" resultType="com.ex.vendingMachine.dto.Product">
 		SELECT
 			product_name productName,
 			price

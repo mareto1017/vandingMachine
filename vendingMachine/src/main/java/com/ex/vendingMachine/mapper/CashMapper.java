@@ -1,8 +1,8 @@
-package com.ex.bandingMachine.mapper;
+package com.ex.vendingMachine.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.ex.bandingMachine.dto.Cash;
+import com.ex.vendingMachine.dto.Cash;
 
 @Mapper
 public interface CashMapper {

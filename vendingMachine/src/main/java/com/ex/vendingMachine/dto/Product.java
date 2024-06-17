@@ -1,4 +1,4 @@
-package com.ex.bandingMachine.dto;
+package com.ex.vendingMachine.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

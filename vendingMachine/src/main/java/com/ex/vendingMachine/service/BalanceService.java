@@ -1,12 +1,12 @@
-package com.ex.bandingMachine.service;
+package com.ex.vendingMachine.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ex.bandingMachine.dto.Cash;
-import com.ex.bandingMachine.mapper.BalanceMapper;
-import com.ex.bandingMachine.mapper.CashMapper;
+import com.ex.vendingMachine.dto.Cash;
+import com.ex.vendingMachine.mapper.BalanceMapper;
+import com.ex.vendingMachine.mapper.CashMapper;
 
 import lombok.extern.slf4j.Slf4j;
 

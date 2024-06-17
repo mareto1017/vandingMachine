@@ -1,11 +1,11 @@
-package com.ex.bandingMachine.mapper;
+package com.ex.vendingMachine.mapper;
 
 import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.ex.bandingMachine.dto.SaleHistory;
+import com.ex.vendingMachine.dto.SaleHistory;
 
 @Mapper
 public interface SaleHistoryMapper {

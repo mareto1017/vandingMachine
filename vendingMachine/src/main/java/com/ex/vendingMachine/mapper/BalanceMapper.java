@@ -1,4 +1,4 @@
-package com.ex.bandingMachine.mapper;
+package com.ex.vendingMachine.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
 

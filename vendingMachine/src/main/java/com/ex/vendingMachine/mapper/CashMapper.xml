@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ex.bandingMachine.mapper.CashMapper">
-	<update id="updateCash" parameterType="com.ex.bandingMachine.dto.Cash">
+<mapper namespace="com.ex.vendingMachine.mapper.CashMapper">
+	<update id="updateCash" parameterType="com.ex.vendingMachine.dto.Cash">
 		UPDATE cash 
 		SET 
 			won50000 = won50000 + #{won50000},
@@ -13,7 +13,7 @@
 			won50 = won50 + #{won50},
 			won10 = won10 + #{won10};
 	</update>
-	<select id="selectCash" resultType="com.ex.bandingMachine.dto.Cash">
+	<select id="selectCash" resultType="com.ex.vendingMachine.dto.Cash">
 		SELECT
 			won50000, 
 			won10000, 
