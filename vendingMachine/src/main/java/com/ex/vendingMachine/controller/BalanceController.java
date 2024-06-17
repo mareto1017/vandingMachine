@@ -28,7 +28,7 @@ public class BalanceController {
 	}
 	
 	// 잔액 반환
-	@GetMapping("/returnBalance")
+	@PostMapping("/returnBalance")
 	public Cash returnBalance() {
 		return balanceService.retrunBalance();
 	}

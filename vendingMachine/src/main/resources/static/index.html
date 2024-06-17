@@ -144,11 +144,12 @@
                             </select>
                         </div>
                         <div>
-                            <select>
-                                <option>==동전==</option>
-                                <option>100원</option>
-                                <option>50원</option>
-                                <option>500원</option>
+                            <select id="chargeBalance2">
+                                <option value="none">==동전==</option>
+                                <option value="10">10원</option>
+                                <option value="50">50원</option>
+                                <option value="100">100원</option>
+                                <option value="500">500원</option>
                             </select>
                         </div>
                     </td>
@@ -156,9 +157,10 @@
                 <tr>
                     <td colspan="3" class="change">
                         <div>
-                            <button type="button">잔돈반환</button>
+                            <button type="button" id="returnBalance">잔돈반환</button>
                             <br>
-                            <input value="1000" readonly>
+                            <textarea rows="5	" cols="50" id="returnCash" readonly></textarea>
+                            <!--  <input value="" id="returnCash" readonly style="height:60px;">-->
                         </div>
                     </td>
                 </tr>
@@ -182,9 +184,9 @@
 	    		}
     		})
     		
-    		//잔액 충전
+    		//지폐 잔액 충전
             $('#chargeBalance').change(function() {
-            	var selectedValue = $('#chargeBalance').val();
+            	let selectedValue = $('#chargeBalance').val();
                 if (selectedValue !== "none") {
                     let data = {};
                     data['won' + selectedValue] = 1;
@@ -207,6 +209,61 @@
                     });
                 }
             });
+			
+    		//동전 잔액 충전
+            $('#chargeBalance2').change(function() {
+            	let selectedValue = $('#chargeBalance2').val();
+                if (selectedValue !== "none") {
+                    let data = {};
+                    data['won' + selectedValue] = 1;
+                    $.ajax({
+                        url: '/chargeBalance',
+                        method: 'POST',
+                        data: data,
+                        success: function(response) {
+                            console.log(data);
+                            $('#chargeBalance2').val('none');
+                            $.ajax({
+                    			url:'/checkBalance',
+                    			method:'GET',
+                    			success:function(checkBalance){
+                    				console.log(checkBalance);
+                    				$('#curBalance').val(checkBalance + '원');
+                	    		}
+                    		})
+                        },
+                    });
+                }
+            });
+    		
+    		
+    		// 잔돈 반환
+    		$('#returnBalance').click(function(){
+    			let curBalance = $('#curBalance').val();
+    			if(curBalance != 0){
+    				let data = curBalance;
+    				$.ajax({
+                        url: '/returnBalance',
+                        method: 'POST',
+                        data: data,
+                        success: function(response) {
+                            console.log(response);
+                            $('#returnCash').val('50000원 : ' + response.won50000 + '개, 10000원 : ' + response.won10000 + 
+                            		'개, 5000원 : ' + response.won5000 + '개 \n1000원 : ' + response.won1000 +
+                            		'개, 500원 : ' + response.won5000 + '개, 100원 : ' + response.won100 +
+                            		'개 \n50원 : ' + response.won5000 + '개, 10원 : ' + response.won10 + "개");
+                            $.ajax({
+                    			url:'/checkBalance',
+                    			method:'GET',
+                    			success:function(checkBalance){
+                    				console.log(checkBalance);
+                    				$('#curBalance').val(checkBalance + '원');
+                	    		}
+                    		})
+                        },
+                    });
+    			}
+    		});
         });
     </script>
 </body>

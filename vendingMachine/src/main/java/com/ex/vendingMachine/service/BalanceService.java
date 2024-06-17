@@ -62,35 +62,60 @@ public class BalanceService {
 		if(currentCash.getWon50000() >= money / 50000) {
 			cash.setWon50000(-(money / 50000));
 			money = money % 50000;
+		} else {
+			money = money - (50000 * currentCash.getWon50000());
+			cash.setWon50000(0);
 		}
 		if(currentCash.getWon10000() >= money / 10000) {
 			cash.setWon10000(-(money / 10000));
 			money = money % 10000;
+		} else {
+			money = money - (10000 * currentCash.getWon10000());
+			cash.setWon10000(0);
 		}
 		if(currentCash.getWon5000() >= money / 5000) {
 			cash.setWon5000(-(money / 5000));
 			money = money % 5000;
+		} else {
+			money = money - (5000 * currentCash.getWon5000());
+			cash.setWon5000(0);
 		}
 		if(currentCash.getWon1000() >= money / 1000) {
 			cash.setWon1000(-(money / 1000));
 			money = money % 1000;
+		} else {
+			money = money - (1000 * currentCash.getWon1000());
+			cash.setWon1000(0);
 		}
 		if(currentCash.getWon500() >= money / 500) {
 			cash.setWon500(-(money / 500));
 			money = money % 500;
+		} else {
+			money = money - (500 * currentCash.getWon500());
+			cash.setWon500(0);
 		}
 		if(currentCash.getWon100() >= money / 100) {
 			cash.setWon100(-(money / 100));
 			money = money % 100;
+		} else {
+			money = money - (100 * cash.getWon100());
+			cash.setWon100(0);
 		}
 		if(currentCash.getWon50() >= money / 50) {
 			cash.setWon50(-(money / 50));
 			money = money % 50;
+		} else {
+			money = money - (50 * currentCash.getWon50());
+			cash.setWon50(0);
 		}
 		if(currentCash.getWon10() >= money / 10) {
 			cash.setWon10(-(money / 10));
 			money = money % 10;
+		} else {
+			money = money - (10 * currentCash.getWon10());
+			cash.setWon10(0);
 		}
+		log.debug("" + money);
 		if(money != 0) {
 			throw new RuntimeException();
 		}
